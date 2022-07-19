@@ -23,7 +23,7 @@
 
     transition: .45s ease-in-out;
     justify-content: left;
-    overflow: clip;
+    overflow: hidden;
     position: absolute;
     display: flex;
 }
