@@ -11,8 +11,11 @@ import { Helmet } from 'react-helmet-async'
 const provider = new GoogleAuthProvider();
 
 function SignIn() {
+
+    // Get path
     const path = window.location.pathname
 
+    // Initialize navigate
     const navigate = useNavigate()
 
     // Set path to '/'
@@ -24,22 +27,32 @@ function SignIn() {
 
     // Show sign in popup
     const signInWithGoogle = () => {
+
+        // Show popup
         signInWithPopup(auth, provider)
             .then((result) => {
+
+                // Check the user is allowed to access the app
                 getDoc(doc(database, 'config', 'allowedManagers')).then(snapshot => {
                     if (snapshot.data().emails.includes(result.user.email)) {
+
+                         
                         navigate('/orders')
                     } else {
+
+                        // If user is not allowed, sign them out and alert them
                         alert('Hospitality Students Only, If you\'re a hospitality student contact an administrator.')
                         signOut(auth)
                     }
                 })
             }).catch((error) => {
-            const errorCode = error.code
-            const errorMessage = error.message
 
-            console.log(errorCode, errorMessage)
-        })
+                // If there is an error, catch it
+                const errorCode = error.code
+                const errorMessage = error.message
+
+                console.log(errorCode, errorMessage)
+            })
     }
 
     return (
