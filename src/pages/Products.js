@@ -27,25 +27,27 @@ function Products(props) {
         showProductOverlay !== false && setShowProductOverlay(false)
     }
 
+    // Delete product data
+    const defaultProduct = {
+        title: 'Product Name',
+        subtitle: 'Product Catogory',
+        description: 'Product Description',
+        image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.istockphoto.com%2Fphotos%2Fblank-white-disposable-cup-with-straw-mockup-set-isolated-picture-id986717130%3Fk%3D6%26m%3D986717130%26s%3D170667a%26w%3D0%26h%3DdVJgv9oB0HYW2YWDZ5YvKqVj5-QSFWhmvl_lBentLto%3D&f=1&nofb=1',
+        prices: {},
+        options: {},
+    }
+
     // Add product to database and open overlay
     const addNewProduct = () => {
-        addDoc(collection(database, 'products'), {
-                title: 'Product Name',
-                subtitle: 'Product Catogory',
-                description: 'Product Description',
-                image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.istockphoto.com%2Fphotos%2Fblank-white-disposable-cup-with-straw-mockup-set-isolated-picture-id986717130%3Fk%3D6%26m%3D986717130%26s%3D170667a%26w%3D0%26h%3DdVJgv9oB0HYW2YWDZ5YvKqVj5-QSFWhmvl_lBentLto%3D&f=1&nofb=1',
-                prices: {},
-                options: {},
-        }).then((result) => {
+
+        // Add product to database
+        addDoc(collection(database, 'products'), defaultProduct).then((result) => {
             setSelectedProduct({
-                title: 'Product Name',
-                subtitle: 'Product Catogory',
-                description: 'Product Description',
-                image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.istockphoto.com%2Fphotos%2Fblank-white-disposable-cup-with-straw-mockup-set-isolated-picture-id986717130%3Fk%3D6%26m%3D986717130%26s%3D170667a%26w%3D0%26h%3DdVJgv9oB0HYW2YWDZ5YvKqVj5-QSFWhmvl_lBentLto%3D&f=1&nofb=1',
-                prices: {},
-                options: {},
-                id: result.id
+                ...defaultProduct,
+                id: result.id,
             })
+
+            // Open product overlay
             setShowProductOverlay(true)
         })
     }

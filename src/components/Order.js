@@ -7,12 +7,17 @@ import { formatPrice } from './Product'
 
 // Format time from milliseconds (100000) to time string (1 Hour Ago)
 function formatTime(milliseconds) {
+    // Convert milliseconds to years
     let time = Math.floor(milliseconds / 31536000000) 
     let type = time === 1 ? ' year Ago' : ' years Ago'
+
+    // Convert years to days, hours & minutes
     time === 0 && (time = Math.floor(milliseconds / 86400000)) && (type = time === 1 ? ' Day Ago' : ' Days Ago')
     time === 0 && (time = Math.floor(milliseconds / 3600000)) && (type = time === 1 ? ' Hour Ago' : ' Hours Ago')
     time === 0 && (time = Math.floor(milliseconds / 60000)) && (type = time === 1 ? ' Minute Ago' : ' Minutes Ago')
     time === 0 && (type = 'Just Now') && (time = '')
+    
+    // Return formatted time string
     return time + type
 }
 
@@ -21,6 +26,8 @@ function Order(props) {
 
     // Calculate total price of order
     let total = 0
+
+    // Add price of each item to total
     order !== null && order.items.forEach(item => {
         total += item.price * item.quantity
     })

@@ -7,10 +7,14 @@ import { database } from '../App'
 
 // Format series of numbers [1, 2.5, 3] to price strings ['1.00', '2.50', '3.00']
 export const formatPrices = (prices) => {
+
+    // Loop through prices and format each price
     Object.keys(prices).forEach(key => {
         if (prices[key].toString().split(".")[1] === undefined) prices[key] = prices[key] + '.00'
         else if (prices[key].toString().split(".")[1].length === 1) prices[key] = prices[key] + '0'
     })
+
+    // Return formatted prices
     return prices
 }
 
@@ -48,16 +52,22 @@ function ProductOverlay(props) {
     // Edit Property
     const editValue = (type, e) => {
         let value = e.target.value
+
         if (value === '') {
+            
+            // If value is empty, reset to original value
             setValues({
                 ...values,
                 [type]: product[type],
             })
         } else if (e.charCode === 13) {
+
+            // If value is not empty and user presses enter, save new value
             setValues({
                 ...values,
                 [type]: value,
             })
+
             e.target.value = ''
         }
         
@@ -79,10 +89,13 @@ function ProductOverlay(props) {
     // Edit name of size
     const editSize = (size, e) => {
         if (e.target.value !== '' && e.charCode === 13) {
+
+            // If value is not empty and user presses enter, save new value
             let newSizes = {...sizes}
             delete newSizes[size]
             newSizes[e.target.value] = sizes[size]
 
+            // Update state
             setSizes({
                 ...newSizes
             })
@@ -93,10 +106,13 @@ function ProductOverlay(props) {
     // Change price of size
     const editPrice = (size, e) => {
         if (e.target.value !== '' && e.charCode === 13) {
+
+            // If value is not empty and user presses enter, save new value
             setSizes({
                 ...sizes,
                 [size]: e.target.value
             })
+
             e.target.value = ''
         }
     }
@@ -127,6 +143,7 @@ function ProductOverlay(props) {
     const deleteOptionsSection = (option) => {
         let copyOfOptions = { ...options }
         delete copyOfOptions[option]
+
         setOptions({
             ...copyOfOptions
         })
@@ -138,9 +155,11 @@ function ProductOverlay(props) {
             let copyOfOptions = { ...options }
             delete copyOfOptions[option]
             copyOfOptions[e.target.value] = options[option]
+
             setOptions({
                 ...copyOfOptions
             })
+
             e.target.value = ''
         }
     }
@@ -160,6 +179,8 @@ function ProductOverlay(props) {
     /// Edit option item text
     const changeOptionItemName = (option, id, e) => {
         if (e.charCode === 13) {
+
+            // If user presses enter, save new value
             let optionsArray = options[option]
             optionsArray[id] = e.target.value
             e.target.value = ''
@@ -182,11 +203,15 @@ function ProductOverlay(props) {
 
     // Save all changes to database
     const saveChanges = () => {
+
+        // Update product in database
         setDoc(doc(database, 'products', product.id), {
             ...removeValue(values, 'id'),
             options: options,
             prices: sizes,
         }).then(() => {
+            
+            // Hide overlay
             hideProductOverlay()
         })
     }

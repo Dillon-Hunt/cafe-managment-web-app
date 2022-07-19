@@ -6,8 +6,11 @@ import { database } from '../App'
 
 // Convert number (1) to price (1.00)
 export const formatPrice = (price) => {
+    // If price is a integer, add .00 to end else if price has 1 decimal place, add 0 to end
     if (price.toString().split(".")[1] === undefined) price = price + '.00'
     else if (price.toString().split(".")[1].length === 1) price = price + '0'
+
+    // Return formatted price
     return price
 }
 

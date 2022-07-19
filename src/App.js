@@ -31,61 +31,104 @@ export const database = getFirestore(app)
 export const auth = getAuth(app)
 //export const analytics = getAnalytics(app);
 
+// Check if two arrays of objects are equivalent
 const equivalent = (array1, array2) => {
+
+  // Default to true
   let isEquivalent = true
+
+  // Check if arrays are the same length
   if (array1.length === array2.length) {
+
+    // Check if each object in array1 is in array2
     array1.forEach((object, id) => {
+
       if (object.id !== array2[id].id)  {
+
+        // If not, set isEquivalent to false
         isEquivalent = false
-    }
+      }
     })
   } else {
+
+    // If not, set isEquivalent to false
     isEquivalent = false
   }
+
+  // Return isEquivalent
   return isEquivalent;
 }
 
 function App() {
+
+  // Set state variables (will rerender view on update)
   const [orders, setOrders] = useState(null)
   const [products, setProducts] = useState(null)
   const [signedIn, loading] = useAuthState(auth)
   const [allowedAccess, setAllowedAccess] = useState(false)
 
+  // Set query for orders
   const orderQuery = query(collection(database, 'orders'), orderBy('time'))
+
+  // Get realtime updates for orders
   onSnapshot(orderQuery, (results) => {
+
+    // Map results to an array of objects
     const newOrders = results.docs.map(result => {
       let order = result.data()
       order.id = result.id
       return order
     })
 
+    // Check for new orders
     if (orders === null || !equivalent(newOrders, orders)) {
+
+      // Set orders
       setOrders(newOrders)
     }
   })
 
+  // Set query for products
   const productQuery = query(collection(database, 'products'), orderBy('title'))
+
+  // Get realtime updates for products
   onSnapshot(productQuery, (results) => {
+
+    // Map results to an array of objects
     const newProducts = results.docs.map(result => {
       let product = result.data()
       product.id = result.id
       return product
     })
 
+    // Check for new products
     if (products === null || !equivalent(newProducts, products)) {
+
+      // Set products
       setProducts(newProducts)
     }
   })
 
+  // Check if user is signed in
   useEffect(() => {
+
+    // Not signed in
     if (signedIn === null) {
+
+      // Show sign in page
       setAllowedAccess(true)
     } else {
+
+      // Get list of allowed users from database
       getDoc(doc(database, 'config', 'allowedManagers')).then(snapshot => {
+
+        // Check if user is allowed access
         if (!snapshot.data().emails.includes(signedIn.email)) {
-            signOut(auth)
-            setAllowedAccess(false)
-            alert('Hospitality Students Only, If you\'re a hospitality student contact an administrator.')
+
+          // If not, sign them out and alert them
+          signOut(auth)
+          setAllowedAccess(false)
+          alert('Hospitality Students Only, If you\'re a hospitality student contact an administrator.')
         }
       })
     }
