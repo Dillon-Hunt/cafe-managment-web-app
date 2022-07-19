@@ -1,38 +1,48 @@
+*:root {
+  --font-36: 36px;
+  --font-24: 24px;
+  --font-18: 18px;
+  --font-14: 14px;
+  --font-12: 12px;
+  --font-10: 10px;
+
+  --charade: #252731;
+  --light-charade: #3D404E;
+  --shamrock: #39CC97;
+  --white: #FFF;
+
+  font-weight: 600;
+
+  background-color: var(--charade);
+  color: var(--white);
+  scrollbar-color: transparent transparent;
+
+  scrollbar-width: thin;
+  font-family: 'Rubik', sans-serif;
+}
+
+h2, h3 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 20px 20px 80px 20px;
+
+  overflow-x: hidden;
+}
+
 .App {
-  text-align: center;
+  font-family: 'Rubik', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.App__Loading {
+  left: 50vw;
+  top: 50vh;
+  margin: 0;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+  transform: translate(-50%, -50%);
+  color: var(--white);
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  position: absolute;
 }

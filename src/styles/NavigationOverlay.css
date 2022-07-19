@@ -1,0 +1,61 @@
+.NavigationOverlay {
+    width: 1000vw;
+    height: 0;
+
+    right: 0;
+    top: 0;
+
+    transition: .55s ease-out;
+    background-color: var(--light-charade);
+    position: fixed;
+}
+
+.NavigationOverlay[shown = true] {
+    height: 100vh;
+}
+
+.NavigationOverlay__Links {
+    width: 0;
+
+    top: 34px;
+    right: 80px;
+    gap: 20px;
+
+    transition: .45s ease-in-out;
+    justify-content: left;
+    overflow: clip;
+    position: absolute;
+    display: flex;
+}
+
+.NavigationOverlay__Links[shown = true] {
+    width: calc(100vw - 100px);
+}
+
+.NavigationOverlay__Link {
+    color: var(--white);
+
+    text-decoration: none;
+    position: relative;
+}
+
+.NavigationOverlay__Link::after {
+    width: 0;
+    height: 2px;
+
+    bottom: 0;
+    left: 50%;
+    border-radius: 10px;
+
+    background-color: var(--shamrock);
+
+    transform: translateX(-50%);
+
+    transition: .2s ease-in-out;
+    position: absolute;
+    content: "";
+}
+
+.NavigationOverlay__Link:hover::after {
+    width: 100%;
+}

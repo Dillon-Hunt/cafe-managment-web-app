@@ -1,0 +1,22 @@
+.NoPage {
+    height: calc(100vh - 40px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.NoPage__Title {
+    margin: 0;
+    font-size: 92px;
+
+    color: var(--shamrock);
+}
+
+.NoPage__Subtitle {
+    margin: 0;
+
+    font-size: var(--font-24);
+}

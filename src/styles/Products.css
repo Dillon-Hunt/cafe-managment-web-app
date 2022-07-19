@@ -1,0 +1,20 @@
+.Products__List {
+    gap: 20px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.Products__New {
+    width: calc(100% - 20px);
+
+    border-radius: 10px;
+    padding: 10px;
+
+    background-color: var(--white);
+    color: var(--light-charade);
+
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+}

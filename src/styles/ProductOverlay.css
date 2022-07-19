@@ -1,0 +1,136 @@
+.ProductOverlay {
+    width: 100vw;
+    height: calc(100vh - 80px);
+
+    padding: 20px;
+    top: 100vh;
+    left: 0;
+    border-radius: 10px;
+
+    background-color: var(--light-charade);
+
+    position: fixed;
+    transition: .4s ease-in-out;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
+
+.ProductOverlay__Heading {
+    margin: 10px 0 5px 0;
+}
+
+.ProductOverlay[shown = true] {
+    top: 80px;
+}
+
+.ProductOverlay__Save__Button[shown = true] {
+    top: calc(100vh - 100px);
+}
+
+.ProductOverlay__Save__Button {
+    width: calc(100vw - 40px);
+    height: 80px;
+
+    top: calc(200vh - 100px);
+    left: 20px;
+    border-radius: 5px;
+
+    background-color: var(--shamrock);
+    color: var(--white);
+    font-size: var(--font-18);
+
+    transition: .4s ease-in-out;
+    cursor: pointer;
+    position: fixed;
+    border: none;
+}
+
+.ProductOverlay__Options__List, .ProductOverlay__Prices__List {
+    gap: 20px;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.ProductOverlay__Options, .ProductOverlay__Sizes {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.ProductOverlay__Options__Delete, .ProductOverlay__Options__Add, .ProductOverlay__Sizes__Delete, .ProductOverlay__Sizes__Add {
+    width: 24px;
+    
+    top: 6px;
+
+    position: absolute;
+    cursor: pointer;
+}
+
+.ProductOverlay__Options__Name, .ProductOverlay__Sizes__Name {
+    margin: 0 0 0 30px;
+    padding: 10px;
+    border-radius: 5px;
+
+    width: calc(100% - 50px);
+
+    border: none;
+}
+
+.ProductOverlay__Options__Option, .ProductOverlay__Sizes__Price {
+    position: relative;
+}
+
+.ProductOverlay__Options__Option__Name, .ProductOverlay__Size__Price__Name {
+    margin: 10px 0 0 60px;
+    padding: 10px;
+    border-radius: 5px;
+
+    width: calc(100% - 80px);
+
+    border: none;
+}
+
+.ProductOverlay__Options__Option__Delete, .ProductOverlay__Options__Option__Add {
+    width: 24px;
+
+    top: calc(50% + 5px);
+    left: 30px;
+
+    transform: translateY(-50%);
+
+    position: absolute;
+    cursor: pointer;
+}
+
+.EndRef {
+    margin: 70px 0 0 0
+}
+
+.ProductOverlay__Hide__Overflow[shown = true] {
+    top: calc(100vh - 110px);
+}
+
+.ProductOverlay__Hide__Overflow {
+    width: 100vw;
+    height: 110px;
+
+    top: calc(200vh - 110px);
+    left: 0;
+    border-radius: 5px;
+
+    background-color: var(--light-charade);
+
+    transition: .4s ease-in-out;
+    position: fixed;
+}
+
+.ProductOverlay__Input {
+    width: calc(100% - 20px) !important;
+
+    padding: 10px;
+    border-radius: 5px;
+
+    border: none;
+}

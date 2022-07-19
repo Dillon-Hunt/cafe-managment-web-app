@@ -1,0 +1,27 @@
+.Navigation {
+    width: 53px;
+    height: 48px;
+
+    top: 20px;
+    right: 20px;
+    border-radius: 0 0 0 10px;
+
+    background-color: var(--charade);
+
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Navigation__image {
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    transform: rotateZ(0deg);
+
+    transition: .4s ease-in-out;
+}
+
+.Navigation__image[shown = true] {
+    transform: rotateZ(180deg);
+}
