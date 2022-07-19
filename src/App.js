@@ -132,7 +132,7 @@ function App() {
         }
       })
     }
-  }, [signedIn])
+  }, [signedIn, orders, products])
 
   return (
     <div className="App">
