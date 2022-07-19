@@ -67,48 +67,6 @@ function App() {
   const [signedIn, loading] = useAuthState(auth)
   const [allowedAccess, setAllowedAccess] = useState(false)
 
-  // Set query for orders
-  const orderQuery = query(collection(database, 'orders'), orderBy('time'))
-
-  // Get realtime updates for orders
-  onSnapshot(orderQuery, (results) => {
-
-    // Map results to an array of objects
-    const newOrders = results.docs.map(result => {
-      let order = result.data()
-      order.id = result.id
-      return order
-    })
-
-    // Check for new orders
-    if (orders === null || !equivalent(newOrders, orders)) {
-
-      // Set orders
-      setOrders(newOrders)
-    }
-  })
-
-  // Set query for products
-  const productQuery = query(collection(database, 'products'), orderBy('title'))
-
-  // Get realtime updates for products
-  onSnapshot(productQuery, (results) => {
-
-    // Map results to an array of objects
-    const newProducts = results.docs.map(result => {
-      let product = result.data()
-      product.id = result.id
-      return product
-    })
-
-    // Check for new products
-    if (products === null || !equivalent(newProducts, products)) {
-
-      // Set products
-      setProducts(newProducts)
-    }
-  })
-
   // Check if user is signed in
   useEffect(() => {
 
@@ -129,6 +87,48 @@ function App() {
           signOut(auth)
           setAllowedAccess(false)
           alert('Hospitality Students Only, If you\'re a hospitality student contact an administrator.')
+        } else {
+          // Set query for orders
+          const orderQuery = query(collection(database, 'orders'), orderBy('time'))
+
+          // Get realtime updates for orders
+          onSnapshot(orderQuery, (results) => {
+
+            // Map results to an array of objects
+            const newOrders = results.docs.map(result => {
+              let order = result.data()
+              order.id = result.id
+              return order
+            })
+
+            // Check for new orders
+            if (orders === null || !equivalent(newOrders, orders)) {
+
+              // Set orders
+              setOrders(newOrders)
+            }
+          })
+
+          // Set query for products
+          const productQuery = query(collection(database, 'products'), orderBy('title'))
+
+          // Get realtime updates for products
+          onSnapshot(productQuery, (results) => {
+
+            // Map results to an array of objects
+            const newProducts = results.docs.map(result => {
+              let product = result.data()
+              product.id = result.id
+              return product
+            })
+
+            // Check for new products
+            if (products === null || !equivalent(newProducts, products)) {
+
+              // Set products
+              setProducts(newProducts)
+            }
+          })
         }
       })
     }
