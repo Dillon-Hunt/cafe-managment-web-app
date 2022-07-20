@@ -44,6 +44,18 @@
     position: absolute;
 }
 
+.Product__Count {
+    bottom: 0;
+    left: 100px;
+    font-weight: 400;
+
+    font-size: var(--font-14);
+
+    color: var(--charade);
+
+    position: absolute;
+}
+
 .Product__Edit {
     width: 24px;
     height: 24px;

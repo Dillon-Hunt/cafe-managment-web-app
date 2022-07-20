@@ -27,6 +27,7 @@ function Product(props) {
             <img className='Product__Image' src={product.image} alt={product.title} />
             <p className='Product__Title' >{product.title}</p>
             <p className='Product__Subtitle' >{product.subtitle}</p>
+            <p className='Product__Count' >Ordered {product.orders === 1 ? product.orders + ' Time' : product.orders + ' Times'}</p>
             <img className='Product__Edit' src='../../edit.svg' alt='Edit Product' onClick={() => {openProductOverlay(product)}} />
             <img className='Product__Bin' src='../../bin.svg' alt='Delete Product' onClick={() => {deleteProduct(product.id)}} />
         </div>
