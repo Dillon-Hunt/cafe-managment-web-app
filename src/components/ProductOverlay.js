@@ -53,8 +53,13 @@ function ProductOverlay(props) {
     const editValue = (type, e) => {
         let value = e.target.value
 
+        // Fixes problem with textarea
+        if (type === 'description') {
+            e.preventDefault()
+        }
+
         if (value === '') {
-            
+
             // If value is empty, reset to original value
             setValues({
                 ...values,
