@@ -1,6 +1,6 @@
 import '../styles/Order.css'
 
-import { updateDoc, doc } from 'firebase/firestore'
+import { updateDoc, doc, increment } from 'firebase/firestore'
 
 import { database } from '../App'
 import { formatPrice } from './Product'
@@ -35,6 +35,9 @@ function Order(props) {
     // Update order in database to show it has been completed
     const dismissOrder = () => {
         updateDoc(doc(database, 'orders', order.id), { complete: true })
+        order.items.forEach(item => {
+            updateDoc(doc(database, 'products', item.id), { orders: increment(item.quantity) })
+        })
     }
 
     return (

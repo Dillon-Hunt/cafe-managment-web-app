@@ -10,6 +10,11 @@ import { Helmet } from 'react-helmet-async'
 // Initialize new Google provider
 const provider = new GoogleAuthProvider();
 
+// Google provider config
+provider.setCustomParameters({
+    prompt: 'select_account'
+})
+
 function SignIn() {
 
     // Get path
