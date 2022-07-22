@@ -66,7 +66,7 @@ function Products(props) {
                         <p>New Product</p>
                     </div>
                 {
-                    products !== null && products.map((product, idx) => {
+                    products !== null && products.sort((a, b) => a.orders < b.orders).map((product, idx) => {
                         return <Product key={idx} product={product} openProductOverlay={openProductOverlay} showProductOverlay={showProductOverlay} />
                     })
                 }
